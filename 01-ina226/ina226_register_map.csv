@@ -1,0 +1,32 @@
+Address,Register Name,Access,Reset Value,Bits,Field Name,Field Access,Field Reset,Field Description
+00h,Configuration,R/W,4127h,15,RST,W,0,Reset bit. Set to 1 to reset all registers to default. Self-clears.
+00h,Configuration,R/W,4127h,14:13,reserved,—,0,Reserved. Always write 0.
+00h,Configuration,R/W,4127h,12:9,AVG,R/W,0,"Averaging count. 000=1, 001=4, 010=16, 011=64, 100=128, 101=256, 110=512, 111=1024 samples."
+00h,Configuration,R/W,4127h,8:6,VBUSCT,R/W,4,"Bus voltage conversion time. 000=140µs, 001=204µs, 010=332µs, 011=588µs, 100=1.1ms, 101=2.116ms, 110=4.156ms, 111=8.244ms."
+00h,Configuration,R/W,4127h,5:3,VSHCT,R/W,4,Shunt voltage conversion time. Same encoding as VBUSCT.
+00h,Configuration,R/W,4127h,2:0,MODE,R/W,7,"Operating mode. 000=Power-down, 001=Shunt triggered, 010=Bus triggered, 011=Shunt+Bus triggered, 100=Power-down, 101=Shunt continuous, 110=Bus continuous, 111=Shunt+Bus continuous."
+01h,Shunt Voltage,R,0000h,15,SVSD,R,0,Sign bit (two's complement).
+01h,Shunt Voltage,R,0000h,14:0,SD,R,0,Shunt voltage data. Multiply by 2.5µV to get voltage in volts.
+02h,Bus Voltage,R,0000h,15,reserved,—,0,Reserved.
+02h,Bus Voltage,R,0000h,14:0,BD,R,0,Bus voltage data. Multiply by 1.25mV to get voltage in volts.
+03h,Power,R,0000h,15:0,PD,R,0,Power data. Multiply by Power_LSB (= 25 × Current_LSB) to get power in watts.
+04h,Current,R,0000h,15,CSSD,R,0,Sign bit (two's complement).
+04h,Current,R,0000h,14:0,CD,R,0,Current data. Multiply by Current_LSB to get current in amperes.
+05h,Calibration,R/W,0000h,15:1,FS,R/W,0,Calibration value bits [15:1]. CAL = trunc(0.00512 / (Current_LSB × R_shunt)).
+05h,Calibration,R/W,0000h,0,reserved,—,0,Reserved. Always 0.
+06h,Mask/Enable,R/W,0000h,15,SOL,R/W,0,Shunt Over-Limit alert enable.
+06h,Mask/Enable,R/W,0000h,14,SUL,R/W,0,Shunt Under-Limit alert enable.
+06h,Mask/Enable,R/W,0000h,13,BOL,R/W,0,Bus Over-Limit alert enable.
+06h,Mask/Enable,R/W,0000h,12,BUL,R/W,0,Bus Under-Limit alert enable.
+06h,Mask/Enable,R/W,0000h,11,POL,R/W,0,Power Over-Limit alert enable.
+06h,Mask/Enable,R/W,0000h,10,CNVR,R/W,0,Conversion Ready alert enable.
+06h,Mask/Enable,R/W,0000h,9:5,reserved,—,0,Reserved.
+06h,Mask/Enable,R/W,0000h,4,AFF,R,0,Alert Function Flag. Set when alert limit is exceeded.
+06h,Mask/Enable,R/W,0000h,3,CVRF,R,0,Conversion Ready Flag. Set when conversion complete.
+06h,Mask/Enable,R/W,0000h,2,OVF,R,0,Math Overflow Flag. Set on arithmetic overflow in Current/Power.
+06h,Mask/Enable,R/W,0000h,1,APOL,R/W,0,"Alert Polarity. 0=active low (default), 1=active high."
+06h,Mask/Enable,R/W,0000h,0,LEN,R/W,0,"Alert Latch Enable. 0=transparent, 1=latched."
+07h,Alert Limit,R/W,0000h,15:0,AL,R/W,0,Alert limit value. Compared to the register selected in Mask/Enable.
+FEh,Manufacturer ID,R,5449h,15:0,MIDR,R,5449h,Manufacturer ID. Always reads 0x5449.
+FFh,Die ID,R,2260h,15:4,DIEID,R,226h,Die ID. Always reads 0x226.
+FFh,Die ID,R,2260h,3:0,REV,R,0h,Revision ID.
