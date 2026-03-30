@@ -1,4 +1,4 @@
-# Register Map Documentation — Portfolio Samples
+# Register Map Documentation :  Portfolio Samples
 
 > Sample deliverables from freelance register map documentation work.
 > For a custom register map document for your device, [hire me on Fiverr](#) *(link added at launch)*.
@@ -18,7 +18,7 @@
 
 ## Sample Projects
 
-### 01 — TI INA226 Register Map
+### 01 :  TI INA226 Register Map
 
 Complete register map documentation for the Texas Instruments INA226
 36V 16-Bit I2C Current/Power Monitor (datasheet SBOS547E).
@@ -62,4 +62,4 @@ embedded firmware, and metrology software. Register maps are a daily tool.
 
 ## Licence
 
-**CC BY-NC 4.0** — see LICENSE
+**CC BY-NC 4.0** :  see LICENSE
